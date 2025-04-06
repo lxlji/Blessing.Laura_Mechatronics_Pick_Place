@@ -29,21 +29,21 @@ function gripGoal = packGripGoal_struct(pos,gripGoal,optns)
     numJoints = size(jointWaypoints,1);    % Only 1 joint for gripper
 
     % TODO: Fill name of left finger 
-    gripGoal.Trajectory.JointNames = r.UR5eROBOT.getBody("flange")
-    % I DONT THINK THIS IS RIGHT
+    gripGoal.Trajectory.JointNames = {'robotiq_85_left_knuckle_joint'}; 
+                                      % r.UR5eROBOT.getBody("flange") 
     
     % Time Stamp
     if numJoints == 1
 
         % Set duration to 1 sec (or faster)
-        r.trajPts.TimeFromStart   = 
+        r.trajPts.TimeFromStart   = rosduration(1);
     
     else
         r.trajPts.TimeFromStart   = rosduration(jointWaypointTimes,'DataFormat', 'struct');
     end
     
     % TODO: Position - set to relevant position
-    r.trajPts.Positions       = 
+    r.trajPts.Positions       = jointWaypoints;
 
     % Velocities
     r.trajPts.Velocities      = zeros(size(jointWaypoints));
