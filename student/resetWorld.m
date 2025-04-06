@@ -5,16 +5,17 @@ function resetWorld(optns)
 % Input: (dict) optns
 % Output: None
 %-------------------------------------------------------------------------- 
-    disp('Resetting the world...');
+    % disp('Resetting the world...');  % REDUNDANT
     
     % TODO: 01 Get robot handle
-    r = rosClassHandle_UR5e; 
+    r = optns{'rHandle'}; 
     
     % TODO: 02 Create Empty Simulation message
-    res_client = rossvcclient('/gazebo/reset_world','DataFormat','struct');% instanciate the client 
+    rosservice type '/gazebo/reset_world';
+    res_client = rossvcclient('/gazebo/reset_world','DataFormat','struct'); % instaniate the client 
     res_req = rosmessage(res_client);   % intantiate  message
     
     % TODO: 03 Call reset service
-    call(res_client, res_req)
+    call(res_client, res_req);
 
 end

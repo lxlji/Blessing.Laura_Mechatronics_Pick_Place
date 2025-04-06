@@ -29,7 +29,8 @@ function gripGoal = packGripGoal_struct(pos,gripGoal,optns)
     numJoints = size(jointWaypoints,1);    % Only 1 joint for gripper
 
     % TODO: Fill name of left finger 
-    gripGoal.Trajectory.JointNames = 
+    gripGoal.Trajectory.JointNames = r.UR5eROBOT.getBody("flange")
+    % I DONT THINK THIS IS RIGHT
     
     % Time Stamp
     if numJoints == 1
