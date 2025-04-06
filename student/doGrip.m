@@ -28,17 +28,21 @@ function [res,state] = doGrip(type,optns,doGripValue )
     end
 
     %% TODO: Pack gripper information intro ROS message
-    packGripGoal_struct()
+    
+    packGripGoal_struct(gripPos, grip_msg, optns)
 
     %% Pending: Check if fingers already at goal
     % Get current finger position
     % jointSub = rossubscriber("/joint_states");
-    jointStateMsg = r.joint_state_sub.receive % receive(joint_state_sub,3);
+    jointStateMsg = r.joint_state_sub.receive; % receive(joint_state_sub,3);
 
     % Compare with with goal
     % get_gripper_pose()
+    
+    grip_goal = grip_msg;
 
     % If so, do not call action
+
 
 
     

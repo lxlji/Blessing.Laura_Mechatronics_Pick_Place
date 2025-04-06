@@ -20,8 +20,8 @@ function gripGoal = packGripGoal_struct(pos,gripGoal,optns)
     % Output
     % A populated gripGoal message
     %----------------------------------------------------------------------
-    r = optns{'rHandle'};
-    
+    r = optns{"rHandle"}; 
+  
     
     % 1. Set Point, name and Duration
     jointWaypoints = pos;                % Set position of way points
