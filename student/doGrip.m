@@ -32,8 +32,15 @@ function [res,state] = doGrip(type,optns,doGripValue )
 
     %% Pending: Check if fingers already at goal
     % Get current finger position
+    % jointSub = rossubscriber("/joint_states");
+    jointStateMsg = r.joint_state_sub.receive % receive(joint_state_sub,3);
+
     % Compare with with goal
+    % get_gripper_pose()
+
     % If so, do not call action
+
+
     
     %% Send action goal
     disp('Sending grip goal...');
