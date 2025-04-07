@@ -46,7 +46,7 @@ type = 'gazebo'; % gazebo, ptcloud, cam, manual
 disp('Getting object goal pose(s)...')
 
 % Get models from Gazebo
-models = getModels(optns);
+models = getModels(optns); 
 
 % Number of models to pick (you can hard code or randomize)
 n = 1; % n = randi([3 25]);
@@ -85,7 +85,7 @@ if strcmp(type,'gazebo')
         fprintf('Picking up model: %s \n',model_name);
         get_robot_gripper_pose_flag = 0; % 0 - no model of fingers available
         [mat_R_T_G, mat_R_T_M] = get_robot_object_pose_wrt_base_link(model_name,get_robot_gripper_pose_flag,optns);
-       
+
         % 05.2 Pick Model
         strategy = 'topdown';               % Assign strategy: topdown, direct
         ret = pick(strategy, mat_R_T_M,optns); % Can have optional starting opse for ctraj like: ret = pick(strategy, mat_R_T_M,mat_R_T_G);
@@ -106,7 +106,7 @@ if strcmp(type,'gazebo')
         if ~ret     % If no errors
 
             % Move to ready position
-            ret = moveToQ('qr');
+            ret = moveToQ('qr',optns);
         end
 
         % Control loop

@@ -33,28 +33,26 @@ function traj_goal = convert2ROSPointVec(mat_joint_traj, robot_joint_names, traj
 
     % TODO: Create Point Message
     pt_msg = rosmessage("trajectory_msgs/JointTrajectoryPoint","DataFormat","struct");% created the piont message
-    
+   
     % TODO: Fill r.point: extract each waypoint and set it as a 6x1 (use transpose)
-    
-    r.point.Positions = [mat_joint_traj];  % 6x1 column vector
+    r.point.Positions = mat2rosJoints(mat_joint_traj)' ;  % 6x1 column vector
     r.point.Velocities = zeros(size(mat_joint_traj))';
     r.point.Accelerations = zeros(size(mat_joint_traj))';
     r.point.Effort = zeros(size(mat_joint_traj))';
-    r.point.TimeFromStart = pt_msg.TimeFromStart;
+    r.point.TimeFromStart = rosduration(traj_duration, 'DataFormat','struct');
     
-
-  
-
-    pt_msg.TimeFromStart = rosduration(traj_duration, 'DataFormat','struct');
-    pt_msg.Positions = mat_joint_traj;
-    pt_msg.Velocities = zeros(size(mat_joint_traj))';
-    pt_msg.Accelerations = zeros(size(mat_joint_traj))';
-    pt_msg.Effort = zeros(size(mat_joint_traj))';
+    % pt_msg.TimeFromStart = rosduration(traj_duration, 'DataFormat','struct');
+    % pt_msg.Positions = mat_joint_traj;
+    % pt_msg.Velocities = zeros(size(mat_joint_traj))';
+    % pt_msg.Accelerations = zeros(size(mat_joint_traj))';
+    % pt_msg.Effort = zeros(size(mat_joint_traj))';
     
     % TODO: Set inside points cell
-    points{i} = r.point.Positions
-    
+    points{1} = r.point;
+
+    % r.point.Positions = pt_msg.Positions;
+    % r.point.TimeFromStart = pt_msg.TimeFromStart;
 
     % TODO: Copy points to traj_goal.Trajectory.Points
-    traj_goal.Trajectory.Points = points;
+    traj_goal.Trajectory.Points = [ points{:} ];
 end

@@ -36,7 +36,7 @@ function gripGoal = packGripGoal_struct(pos,gripGoal,optns)
     if numJoints == 1
 
         % Set duration to 1 sec (or faster)
-        r.trajPts.TimeFromStart   = rosduration(1);
+        r.trajPts.TimeFromStart   = rosduration(1,'DataFormat', 'struct');
     
     else
         r.trajPts.TimeFromStart   = rosduration(jointWaypointTimes,'DataFormat', 'struct');
