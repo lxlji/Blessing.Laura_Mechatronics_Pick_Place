@@ -1,31 +1,52 @@
-% Pick and place
+% % % Pick and place
+% % 
+% % %% 00 Connect to ROS (use your own masterhost IP address)
+% clc
+% clear
+% rosshutdown;
+% 
+% pause(2);       % Check if more down time helps diminish connection errors
+% % masterhostIP = "192.168.64.129";
+% % rosinit(masterhostIP)
+% %%
+% % if exist('r','var') && isvalid(r)
+% %     disp('Robot handle exists and is valid.')
+% % else
+% %     r = rosClassHandle;
+% % end
+% % r = rosClassHandle;
+% %y = yoloClassHandle;
+% 
+% %% Set IP address for master and node:
+% masterHostIP = "192.168.56.101";
+% nodeHostIP = "192.168.56.1";
+% rosinit(masterHostIP, 11311, "NodeHost",nodeHostIP);
+% 
+% %% ROS Class handle
+% 
+% % r will contains all publisher/subscriber/service/action/kinematic/tf info
+% disp("Creating Robot Handle...");
+% r = rosClassHandle_UR5e;
+% 
+% %%
+% keys   = ["debug", "toolFlag", "traj_steps", "x_offset", "y_offset", "z_offset", "traj_duration", "frameAdjustmentFlag", "toolAdjustmentFlag", "toolAdjustment", "rHandle"];
+% values = {      0,          0,            1,          0,          0,        0.2,               2,                     1,                    1,            0.165,         r};
+% optns = dictionary(keys,values);
 
-%% 00 Connect to ROS (use your own masterhost IP address)
-clc
-clear
-rosshutdown;
+% Create global dictionary. Passed to all functions. Includes robot handle
+keys   = ["debug", "toolFlag", "traj_steps", "z_offset", "traj_duration", "frameAdjustmentFlag", "toolAdjustmentFlag", "toolAdjustment", "rHandle"];
+values = {      0,          0,            1,       0.09,               2,                     1,                    1,            0.165,         r};
 
-pause(2);       % Check if more down time helps diminish connection errors
-masterhostIP = "192.168.64.129";
-rosinit(masterhostIP)
-
-% if exist('r','var') && isvalid(r)
-%     disp('Robot handle exists and is valid.')
-% else
-%     r = rosClassHandle;
-% end
-r = rosClassHandle;
-%y = yoloClassHandle;
-keys   = ["debug", "toolFlag", "traj_steps", "x_offset", "y_offset", "z_offset", "traj_duration", "frameAdjustmentFlag", "toolAdjustmentFlag", "toolAdjustment", "rHandle"];
-values = {      0,          0,            1,          0,          0,        0.2,               2,                     1,                    1,            0.165,         r};
+% Instantiate the dictionary: values can be access via {}, i.e. optns{'key'}
+disp("Creating dictionary..."); % setting optional values that can be used later
 optns = dictionary(keys,values);
 
-%% 02 Go Home
-disp('Going home...');
-goHome('qtest',optns);    % moves robot arm to a qr or qz start config
-
-resetWorld;      % reset models through a gazebo service
-playingAround(optns);
+% %% 02 Go Home
+% disp('Going home...');
+% goHome('qr',optns);    % moves robot arm to a qr or qz start config
+% 
+% resetWorld(optns);      % reset models through a gazebo service
+% % % playingAround(optns);
 
 %% 03 Get Pose from Gazebo Models
 disp('Getting goal...') 

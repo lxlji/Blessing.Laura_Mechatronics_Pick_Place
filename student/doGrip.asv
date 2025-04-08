@@ -37,7 +37,7 @@ function [res,state] = doGrip(type,optns,doGripValue )
     jointStateMsg = receive(r.joint_state_sub,3); % get arm positions
 
     % Compare with with goal
-    % if gripPos ~= round(jointStateMsg.Position(2),4)
+    if grip_Pos ~= round(jointStateMsg.Position(2),5)
         % If so, do not call action
   
     %% Send action goal
@@ -51,5 +51,5 @@ function [res,state] = doGrip(type,optns,doGripValue )
         disp('No server..? Trying again...');
         [res,state,status] = sendGoalAndWait(r.grip_action_client,grip_goal);
     end   
-    % end  % if 
+    end  % if 
 end

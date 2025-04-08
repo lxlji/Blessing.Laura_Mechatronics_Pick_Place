@@ -46,7 +46,7 @@ function [mat_R_T_G, mat_R_T_M] = get_robot_object_pose_wrt_base_link(model_name
     % Change reference frame from world to robot's base_link
     mat_R_T_M = inv(mat_W_T_R)*mat_W_T_M; %#ok<MINV>
 
-    %z_offset = 0.052; %0.052; % Can height is 5.2cm
+    % z_offset = 0.052; %0.052; % Can height is 5.2cm
     mat_R_T_M(3,4) = mat_R_T_M(3,4) + z_offset; % Offset along +z_base_link to simulate knowing height of top of can.
     
     

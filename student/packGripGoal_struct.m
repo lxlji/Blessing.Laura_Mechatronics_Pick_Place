@@ -30,7 +30,6 @@ function gripGoal = packGripGoal_struct(pos,gripGoal,optns)
 
     % TODO: Fill name of left finger 
     gripGoal.Trajectory.JointNames = {'robotiq_85_left_knuckle_joint'}; 
-                                      % r.UR5eROBOT.getBody("flange") 
     
     % Time Stamp
     if numJoints == 1

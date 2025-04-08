@@ -41,12 +41,6 @@ function traj_goal = convert2ROSPointVec(mat_joint_traj, robot_joint_names, traj
     r.point.Effort = zeros(size(mat_joint_traj))';
     r.point.TimeFromStart = rosduration(traj_duration, 'DataFormat','struct');
     
-    % pt_msg.TimeFromStart = rosduration(traj_duration, 'DataFormat','struct');
-    % pt_msg.Positions = mat_joint_traj;
-    % pt_msg.Velocities = zeros(size(mat_joint_traj))';
-    % pt_msg.Accelerations = zeros(size(mat_joint_traj))';
-    % pt_msg.Effort = zeros(size(mat_joint_traj))';
-    
     % TODO: Set inside points cell
     points{1} = r.point;
 
