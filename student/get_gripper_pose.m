@@ -19,7 +19,7 @@ function mat_R_T_G = get_gripper_pose(optns,fing_alignment)
     toolAdjustmentFlag  = toolAdjustmentFlag{1}; 
     
     % List to tftree
-    tf_listening_time   = r.tf_listening_time; %optns('tf_listening_time'); 
+    tf_listening_time   = optns('tf_listening_time'); 
     tf_listening_time   = tf_listening_time{1};
     
     % Get gripper transform
@@ -37,7 +37,7 @@ function mat_R_T_G = get_gripper_pose(optns,fing_alignment)
     end  
         
     % Convert gripper pose to matlab format
-    mat_R_T_G = ros2matlabPose(current_pose,frameAdjustmentFlag,toolAdjustmentFlag); 
+    mat_R_T_G = ros2matlabPose(current_pose,frameAdjustmentFlag,toolAdjustmentFlag,optns); %added optns 
 
     %% Adjust orientation of gripper
     if strcmpi(fing_alignment,'x')

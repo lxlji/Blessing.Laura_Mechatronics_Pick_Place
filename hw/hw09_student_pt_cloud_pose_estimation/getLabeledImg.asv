@@ -27,7 +27,7 @@ function [bboxes, scores, labels, numObjects, myImg, annotatedImage] = getLabele
 
     rosImg  = receive(r.rgb_sub);
     myImg   = rosReadImage(rosImg,"PreserveStructureOnRead",true);
-    ptCloud = pointCloud(myImg); % make myImg a pointCloud object  
+    % ptCloud = pointCloud(myImg); % make myImg a pointCloud object  
     
     %% Bounding Boxes
     disp("Computing bounding boxes, scores, and labels...")
@@ -39,11 +39,11 @@ function [bboxes, scores, labels, numObjects, myImg, annotatedImage] = getLabele
     trainedYoloNet = pretrained.detector;
 
     %% TODO: Detect objects using yolo. Output bboxes, scores, labels. Threshold of 0.7
-    [bboxes,scores,labels] = detect(trainedYoloNet,rgbImage,Threshold=0.7);
+    [bboxes,scores,labels] = detect(trainedYoloNet,myImg,Threshold=0.7);
 
     %% TODO: Visualize the detected objects' bounding boxes by calling insertObjectAnnotation and save to annotatedImage
     disp("Drawing bounding boxes...")
-    annotatedImage = insertObjectAnnotation(im2uint8(rgbImage), ...
+    annotatedImage = insertObjectAnnotation(im2uint8(myImg), ...
                                         'Rectangle',...
                                         bboxes,...
                                         string(labels)+":"+string(scores));

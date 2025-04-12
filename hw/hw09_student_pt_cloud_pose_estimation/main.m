@@ -19,8 +19,9 @@
     %% 02 Create Options 
     
     % Create global dictionary. Passed to all functions. Includes robot handle
-    keys   = ["debug", "toolFlag", "traj_steps", "z_offset", "traj_duration", "frameAdjustmentFlag", "toolAdjustmentFlag", "toolAdjustment", "rHandle"];
-    values = {      1,          0,            1,       0.09,               2,                     1,                    1,            0.165,         r};
+    % added tf_listening_time
+    keys   = ["debug", "toolFlag", "traj_steps", "z_offset", "traj_duration", "frameAdjustmentFlag", "toolAdjustmentFlag", "toolAdjustment", "rHandle","tf_listening_time"];
+    values = {      1,          0,            1,       0.09,               2,                     1,                    1,            0.165,         r,  r.tf_listening_time};
     
     % Instantiate the dictionary: values can be access via {}, i.e. optns{'key'}
     disp("Creating dictionary...");
