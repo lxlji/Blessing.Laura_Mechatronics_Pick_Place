@@ -19,7 +19,7 @@ function mat_R_T_G = get_gripper_pose(optns,fing_alignment)
     toolAdjustmentFlag  = toolAdjustmentFlag{1}; 
     
     % List to tftree
-    tf_listening_time   = optns('tf_listening_time'); 
+    tf_listening_time   = r.tf_listening_time; %optns('tf_listening_time'); 
     tf_listening_time   = tf_listening_time{1};
     
     % Get gripper transform
