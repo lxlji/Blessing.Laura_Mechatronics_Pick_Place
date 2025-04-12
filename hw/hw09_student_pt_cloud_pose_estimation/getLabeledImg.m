@@ -37,7 +37,6 @@ function [bboxes, scores, labels, numObjects, myImg, annotatedImage] = getLabele
     %pretrained = r.general_detector;
     pretrained = load("./detectors/detector_gral_sim.mat");
     trainedYoloNet = pretrained.detector;
-    % imshow(myImg)
 
     %% TODO: Detect objects using yolo. Output bboxes, scores, labels. Threshold of 0.7
     [bboxes,scores,labels] = detect(trainedYoloNet,myImg,Threshold=0.7);

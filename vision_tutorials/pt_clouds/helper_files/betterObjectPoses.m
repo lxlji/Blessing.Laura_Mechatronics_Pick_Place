@@ -1,4 +1,7 @@
-function [xyz,theta,ptCloud_vec,scene_pca_vec] = betterObjectPoses(ptCloud_tform_cam, rbgImage, bboxes, gridDownsample, base_to_cam_pose)
+function [xyz,theta,ptCloud_vec,scene_pca_vec] = betterObjectPoses(ptCloud_tform_cam, ...
+    rbgImage, bboxes, gridDownsample, base_to_cam_pose)
+    % nonPlane_tform_cam, ...
+
 % the base is findObjectPoses but it is now tweaked by Gracelyn to better
 % suit to use of merged point clouds
 

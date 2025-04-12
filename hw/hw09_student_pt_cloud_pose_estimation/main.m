@@ -2,6 +2,7 @@
     %% 00 Connect to ROS (use your own masterhost IP address)
     clc
     clear
+    close all
     rosshutdown;
     pause(2);       
     
