@@ -42,7 +42,7 @@ function traj_goal = convert2ROSPointVec(mat_joint_traj, robot_joint_names, traj
     r.point.TimeFromStart = rosduration(traj_duration, 'DataFormat','struct');
     
     % TODO: Set inside points cell
-    points{1} = r.point;
+    points{1} = r.point; 
 
     % r.point.Positions = pt_msg.Positions;
     % r.point.TimeFromStart = pt_msg.TimeFromStart;
